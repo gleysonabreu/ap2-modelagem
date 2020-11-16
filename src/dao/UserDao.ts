@@ -10,6 +10,11 @@ class UserDao implements IUserDao{
     this.ormRepository = getRepository(User);
   }
 
+  findAll = async (): Promise<User[] | undefined> => {
+    const users = await this.ormRepository.createQueryBuilder('SELECT * FROM users').getMany();
+    return users;
+  }
+
   delete = async (id: number): Promise<void> => {
     await this.ormRepository.delete(id);
   }

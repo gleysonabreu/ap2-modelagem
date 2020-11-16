@@ -7,4 +7,5 @@ export default interface IDaoUser {
   update(user: User): Promise<User>;
   delete(id: number): Promise<void>;
   findByEmail(email: string): Promise<User | undefined>;
+  findAll(): Promise<User[] | undefined>;
 }

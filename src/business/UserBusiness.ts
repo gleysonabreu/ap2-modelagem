@@ -11,6 +11,14 @@ class UserBusiness {
     this.userDao = new UserDao();
   }
 
+  findAll = async () => {
+    const users = await this.userDao.findAll();
+
+    if(!users) throw new Error('Não tem usuários cadastrados.');
+
+    return users
+  }
+
   userRegister = async ({ email, name }: ICreateUser): Promise<User> => {
     
     if(email === '' || name === '') throw new Error('Preencha todos os dados.');
