@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import { getConnection } from 'typeorm';
 import connect from './database/connection';
 import UserBusiness from './business/UserBusiness';
 import User from './entity/User';
@@ -10,4 +11,6 @@ import User from './entity/User';
     const user = await userBusiness.findAll();
 
     console.log(user);
+
+    await getConnection().close();
 })();
