@@ -14,7 +14,6 @@
       "typeorm": "0.2.29"
    },
    "scripts": {
-      "dev": "tsnd --transpile-only --respawn src/index.ts",
       "insert": "tsnd src/insert.ts",
       "update": "tsnd src/update.ts",
       "show": "tsnd src/show.ts",
