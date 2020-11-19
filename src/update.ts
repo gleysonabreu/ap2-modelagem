@@ -4,21 +4,18 @@ import connect from './database/connection';
 import StudentBusiness from './business/StudentBusiness';
 
 (async () => {
-
   try {
     await connect();
 
-    const name = 'Gleyson Abreu';
-    const email = 'gleyson_datu@hotmail.com';
-
     const studentBusiness = new StudentBusiness();
-    const student = await studentBusiness.studentRegister({ email, name });
+    const student = await studentBusiness.findStudentById(1);
+    student.name = 'Gleyson Abreu de Sousa';
 
-    console.log(student);
+    const studentUpdate = await studentBusiness.studentUpdate(student);
+    console.log(studentUpdate);
 
     await getConnection().close();
   } catch (error) {
     throw new Error(error);
   }
-
 })();

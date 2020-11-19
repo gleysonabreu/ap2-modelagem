@@ -3,7 +3,7 @@ import Student from '../entity/Student';
 import ICreateStudent from './ICreateStudent';
 import IStudentDAO from './IDaoStudent';
 
-class UserDao implements IStudentDAO {
+class StudentDao implements IStudentDAO {
   private ormRepository: Repository<Student>;
 
   constructor(){
@@ -16,9 +16,7 @@ class UserDao implements IStudentDAO {
   }
 
   delete = async (id: number): Promise<void> => {
-    await this.ormRepository.createQueryBuilder('DELETE FROM student WHERE id = :id')
-    .setParameters({ id })
-    .execute();
+    await this.ormRepository.query('DELETE FROM student WHERE id = ?', [id]);
   }
 
   create = async (student: ICreateStudent): Promise<Student> => {
@@ -52,4 +50,4 @@ class UserDao implements IStudentDAO {
   }
 }
 
-export default UserDao;
+export default StudentDao;
