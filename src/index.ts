@@ -1,16 +1,16 @@
 import 'reflect-metadata';
 import { getConnection } from 'typeorm';
 import connect from './database/connection';
-import UserBusiness from './business/UserBusiness';
-import User from './entity/User';
+import StudentBusiness from './business/StudentBusiness';
+import Student from './entity/Student';
 
 (async () => {
     await connect();
 
-    const userBusiness = new UserBusiness();
-    const user = await userBusiness.findAll();
+    const studentBusiness = new StudentBusiness();
+    const student = await studentBusiness.findAll();
 
-    console.log(user);
+    console.log(student);
 
     await getConnection().close();
 })();
