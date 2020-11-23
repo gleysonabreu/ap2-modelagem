@@ -11,7 +11,7 @@ class StudentDao implements IStudentDAO {
   }
 
   findAll = async (): Promise<Student[] | undefined> => {
-    const students = await this.ormRepository.createQueryBuilder('SELECT * FROM student').getMany();
+    const students = <Student[]> await this.ormRepository.query('SELECT * FROM student');
     return students;
   }
 
@@ -28,25 +28,18 @@ class StudentDao implements IStudentDAO {
   }
 
   show = async (id: number): Promise<Student | undefined> => {
-    const user = await this.ormRepository.createQueryBuilder('SELECT * FROM student WHERE id = :id')
-    .setParameters({ id }).getOne();
-
-    return user;
+    const student = <Student> await this.ormRepository.query('SELECT * FROM student WHERE id = ?', [id]);
+    return student[0];
   }
 
   update = async (student: Student): Promise<Student> => { 
     const studentUpdated = await this.ormRepository.save({ ...student });
-
     return studentUpdated;
   }
 
   findByEmail = async (email: string): Promise<Student | undefined> => {
-    const user = await this.ormRepository
-    .createQueryBuilder('SELECT * FROM users WHERE email = :email')
-    .setParameters({ email })
-    .getOne();
-    
-    return user;
+    const student = <Student> await this.ormRepository.query('SELECT * FROM student WHERE email = ?', [email]);  
+    return student[0];
   }
 }
 
