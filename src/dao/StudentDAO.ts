@@ -22,8 +22,7 @@ class StudentDao implements IStudentDAO {
   create = async (student: ICreateStudent): Promise<Student> => {
     const createStudent = this.ormRepository.create(student);
     await this.ormRepository.save(createStudent);
-
-    this.ormRepository.queryRunner
+    
     return createStudent;
   }
 

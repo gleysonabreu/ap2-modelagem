@@ -43,7 +43,7 @@ class StudentBusiness {
     return studentUpdated;
   }
 
-  findUserByEmail = async (email: string): Promise<Student | undefined> => {
+  findStudentByEmail = async (email: string): Promise<Student | undefined> => {
     const student = await this.studentDAO.findByEmail(email);
 
     if(!student) throw new Error('Estudante não existe!');
